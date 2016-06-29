@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+
+  <URLBase>http://10.0.0.5:8080</URLBase>
+
+  <device>
+    <deviceType>urn:schemas-upnp-org:device:MediaServer:1</deviceType>
+    <friendlyName>JavaScript UPnP-Device</friendlyName>
+    <manufacturer>Steffen Mohring</manufacturer>
+    <manufacturerURL>http://www.steffenmohring.de</manufacturerURL>
+    <modelDescription>Prototyp implementierung des UPnP Protokolls</modelDescription>
+    <modelName>Node.JS UPnP-Device</modelName>
+    <modelNumber>1.0</modelNumber>
+    <modelURL>http://www.steffenmohring.de/UPnP-Device</modelURL>
+    <serialNumber>1234</serialNumber>
+    <UDN>uuid:e8409b7c-04fd-4809-9504-d3297744e49b</UDN>
+    <UPC>12345678</UPC>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ContentDirectory:1</serviceType>
+        <serviceId>ContentDirectory</serviceId>
+        <SCPDURL>services/ContentDirectory.xml</SCPDURL>
+        <controlURL>services/ContentDirectory/control</controlURL>
+        <eventSubURL>services/ContentDirectory/event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>ConnectionManager</serviceId>
+        <SCPDURL>services/ConnectionManager.xml</SCPDURL>
+        <controlURL>services/ConnectionManager/control</controlURL>
+        <eventSubURL>services/ConnectionManager/event</eventSubURL>
+      </service>
+    </serviceList>
+    <presentationURL>web</presentationURL>
+  </device>
+</root>

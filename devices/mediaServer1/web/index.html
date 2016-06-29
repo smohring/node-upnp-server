@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>JavaScript UPnP-Device</title>
+
+    <link rel="stylesheet" href="web/css/jquery-ui-1.10.0.custom.min.css" />
+    <link rel="stylesheet" href="web/css/style.css" />
+    <link rel="icon" type="web/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="web/jquery.js"></script>
+    <script type="text/javascript" src="web/jqueryui.js"></script>
+    <script>
+
+        $(function () {
+             //Initialisierung der Tabs
+             $("#tabs").tabs();
+
+             //Abrufen der Daten über AJAX für den ersten anzuzeigenden Tab
+             $.get('/', function(data) {
+                    $('#tabs-1').html('<textarea rows="41">'+data+'</textarea>');
+                }, 'text');
+
+             //Eventhandler für Tab "Device Description"
+             $("#link1").on('click', function(){
+
+                $.get('/', function(data) {
+                    $('#tabs-1').html('<textarea rows="41">'+data+'</textarea>');
+                }, 'text');
+             });
+
+            //Eventhandler für Tab "Service Description"
+             $("#link2").on('click', function(){
+                $.get('/services/ContentDirectory.xml', function(data) {
+                          $('#tabs-2').html('urn:schemas-upnp-org:service:ContentDirectory:1<br/><textarea rows="18">'+data+'</textarea>');
+                     }, 'text');
+
+                $.get('/services/ConnectionManager.xml', function(data) {
+                          $('#tabs-2').append('<br/><br/>urn:schemas-upnp-org:service:ConnectionManager:1<br/><textarea rows="18">'+data+'</textarea>');
+                     }, 'text');
+             });
+
+             //Eventhandler für Tab "Device Log"
+             $("#link3").on('click', function(){
+
+                 //Abrufen des Logs des Moduls "device"
+                 $.get('web/log/device', function(data) {
+                        //Übertragen der Daten in den Tab
+                        $('#tabs-3').html('<xmp>'+data+'</xmp>');
+                     });
+             });
+
+            //Eventhandler für Tab "SSDP Log"
+             $("#link4").on('click', function(){
+
+                 $.get('web/log/ssdp', function(data) {
+                          $('#tabs-4').html('<xmp>'+data+'</xmp>');
+                     });
+             });
+
+            //Eventhandler für Tab "HTTP Log"
+             $("#link5").on('click', function(){
+                $.get('web/log/http', function(data) {
+                          $('#tabs-5').html('<xmp>'+data+'</xmp>');
+                     });
+             });
+
+            //Eventhandler für Tab "Control Log"
+             $("#link6").on('click', function(){
+                $.get('web/log/control', function(data) {
+                          $('#tabs-6').html('<xmp>'+data+'</xmp>');
+                     });
+             });
+
+            //Eventhandler für Tab "Event Log"
+             $("#link7").on('click', function(){
+                $.get('web/log/event', function(data) {
+                          $('#tabs-6').html('<xmp>'+data+'</xmp>');
+                     });
+             });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="header">
+        <div><img src="web/upnp_logo.png" /></div><div>JavaScript UPnP-Device</div><div><img src="web/node_logo.png" /></div>
+    </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1" id="link1">Device Description</a></li>
+            <li><a href="#tabs-2" id="link2">Service Description</a></li>
+            <li><a href="#tabs-3" id="link3">Device Log</a></li>
+            <li><a href="#tabs-4" id="link4">SSDP Log</a></li>
+            <li><a href="#tabs-5" id="link5">HTTP Log</a></li>
+            <li><a href="#tabs-5" id="link6">Control Log</a></li>
+            <li><a href="#tabs-6" id="link7">Event Log</a></li>
+        </ul>
+        <div id="tabs-1"></div>
+        <div id="tabs-2"></div>
+        <div id="tabs-3"></div>
+        <div id="tabs-4"></div>
+        <div id="tabs-5"></div>
+        <div id="tabs-6"></div>
+        <div id="tabs-7"></div>
+    </div>
+    <div style="font-size:10pt;">(c) 2013 by Steffen Mohring</div>
+</body>
+</html>
